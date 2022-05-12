@@ -1,0 +1,56 @@
+<div class="mb-3">
+  <input
+    [(ngModel)]="marcar"
+    type="text"
+    class="form-control"
+    placeholder="Marcar"
+  />
+</div>
+
+{{ nomeControl.errors | json }}
+<div class="d-flex flex-row mb-3">
+  <input
+    [formControl]="nomeControl"
+    [class.is-invalid]="nomeControl.dirty && nomeControl.invalid"
+    type="text"
+    class="form-control"
+    placeholder="Nome"
+  />
+  <div class="invalid-feedback">{{ getErrorMessage(nomeControl) }}</div>
+
+  <input
+    [formControl]="idadeControl"
+    type="number"
+    class="form-control"
+    placeholder="Idade"
+  />
+  <button
+    (click)="adicionar()"
+    type="button"
+    class="btn btn-primary"
+    [disabled]="!nome || !idade"
+  >
+    <div
+      *ngIf="buttonLoading"
+      class="spinner-border spinner-border-sm text-dark"
+    ></div>
+    <span *ngIf="!buttonLoading"> Adicionar </span>
+  </button>
+</div>
+
+<ul class="list-group">
+  <li
+    *ngFor="let pessoa of pessoas"
+    class="list-group-item d-flex justify-content-between align-items-start"
+    [class.active]="marcar && pessoa.nome.includes(marcar)"
+  >
+    {{ pessoa.nome }} - {{ pessoa.idade }} anos
+    <button
+      (click)="remover(pessoa._id)"
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </li>
+</ul>
