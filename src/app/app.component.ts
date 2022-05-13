@@ -10,16 +10,22 @@ import { PessoaService } from './pessoa.service';
 export class AppComponent implements OnInit {
   marcar: string;
 
-  nomeControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(3),
-  ]);
 
-  idadeControl = new FormControl(null, [
-    Validators.required,
-    Validators.min(0),
-    Validators.max(150),
-  ]);
+  pessoaFormGroup = new FormGroup({
+    nome: nomeControl = new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]);
+    idade:idadeControl = new FormControl(null, [
+      Validators.required,
+      Validators.min(0),
+      Validators.max(150),
+    ]);
+  });
+
+
+
+ 
 
   nome: string = 'valor inicial';
   idade: number;

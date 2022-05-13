@@ -11,6 +11,7 @@
 <div class="d-flex flex-row mb-3">
   <input
     [formControl]="nomeControl"
+    [class.is-valid]="nomeControl.dirty && nomeControl.invalid"
     [class.is-invalid]="nomeControl.dirty && nomeControl.invalid"
     type="text"
     class="form-control"
